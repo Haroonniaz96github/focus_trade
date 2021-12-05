@@ -16,11 +16,11 @@ use App\Http\Controllers\Admin\UsersController;
 
 use App\Http\Controllers\User\UserController;
 
-
 Route::get('/clear',function(){
     Artisan::call('config:clear');
     Artisan::call('cache:clear');
     Artisan::call('config:cache');
+    dd("cache cleared");
 });
 Auth::routes();
 
@@ -38,6 +38,10 @@ Route::group([
     Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
     Route::get('/profile-setting', [UserController::class, 'profileSetting'])->name('user.profile');
     Route::post('/profile-setting', [UserController::class, 'updateProfile'])->name('user.profile');
+    Route::get('/deposit-fund', [UserController::class, 'depositFund'])->name('deposit_fund');
+    Route::post('/deposit-fund', [UserController::class, 'updateDepositFund']);
+    Route::get('/deposit-usdt', [UserController::class, 'depositUsdt'])->name('deposit_usdt');
+    Route::post('/deposit-usdt', [UserController::class, 'updateDepositUsdt']);
     Route::get('/cache-clear', [UserController::class, 'configCache'])->name('user.cache_clear');
 
     Route::get('/notifications', [UserController::class, 'notifications'])->name('user.notifications');

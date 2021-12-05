@@ -34,7 +34,7 @@ class UsersController extends Controller
     public function getUsers(Request $request){
         $columns = array(
             0 => 'id',
-            1 => 'name',
+            1 => 'user_name',
             2 => 'email',
             3 => 'status',
             4 => 'created_at',
@@ -55,14 +55,14 @@ class UsersController extends Controller
             $totalFiltered = User::count();
         }else{
             $search = $request->input('search.value');
-            $users = User::where('name', 'like', "%{$search}%")
+            $users = User::where('user_name', 'like', "%{$search}%")
                 ->orWhere('email','like',"%{$search}%")
                 ->orWhere('created_at','like',"%{$search}%")
                 ->offset($start)
                 ->limit($limit)
                 ->orderBy($order, $dir)
                 ->get();
-            $totalFiltered = User::where('name', 'like', "%{$search}%")
+            $totalFiltered = User::where('user_name', 'like', "%{$search}%")
                 ->orWhere('email','like',"%{$search}%")
                 ->count();
         }
@@ -81,7 +81,7 @@ class UsersController extends Controller
                                     </div>
                                 </td>
                             ';
-                $nestedData['name'] = $r->name;
+                $nestedData['user_name'] = $r->user_name;
                 $nestedData['email'] = $r->email;
                 if($r->active){
                     $nestedData['active'] = '<span class="btn btn-xs btn-success">Active</span>';
@@ -141,15 +141,21 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'sponser_id' => 'required|max:255',
+            'user_name' => 'required|max:255',
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'phone_number' => 'required|max:255',
             'email' => 'required|unique:users,email',
-            'password' => 'required|min:6',
         ]);
-
         $input = $request->all();
         $user = new User();
-        $user->name = $input['name'];
-        $user->email = $input['email'];
+        $user->sponser_id = $request->input('sponser_id');
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
+        $user->user_name = $request->input('user_name');
+        $user->phone_number = $request->input('phone_number');
+        $user->email = $request->input('email');
         $res = array_key_exists('active', $input);
         if ($res == false) {
             $user->active = 0;
@@ -204,13 +210,20 @@ class UsersController extends Controller
     {
         $user = $this->obj_user->findOrFail($id);
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'email' => 'required|unique:users,email,'.$id,
+            'sponser_id' => 'required|max:255',
+            'user_name' => 'required|max:255',
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'phone_number' => 'required|max:255',
+            'email' => 'required|unique:users,email,'.$user->id,
         ]);
+        $user->sponser_id = $request->input('sponser_id');
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
+        $user->user_name = $request->input('user_name');
+        $user->email = $request->input('email');
+        $user->phone_number = $request->input('phone_number');
         $input = $request->all();
-
-        $user->name = $input['name'];
-        $user->email = $input['email'];
         $res = array_key_exists('active', $input);
         if ($res == false) {
             $user->active = 0;
@@ -218,11 +231,10 @@ class UsersController extends Controller
             $user->active = 1;
 
         }
-        if(!empty($input['password'])) {
-            $user->password = bcrypt($input['password']);
-        }
-
+        $user->password = isset($input['password']) ? bcrypt($request->input('password')):$user->password;
         $user->save();
+        Session::flash('success_message','Profile updated successfully.');
+        return redirect()->back();
 
         Session::flash('success_message', 'Great! user successfully updated!');
         return redirect()->back();

@@ -21,11 +21,52 @@
                     <form class="form-horizontal" method="post" action="{{ route('user.profile') }}">
                         @csrf
                         <div class="form-group">
-                            <label for="name" class="col-sm-3 control-label">Name</label>
+                            <label for="sponser_id" class="col-sm-3 control-label">Sponser Id</label>
                             <div class="col-sm-4">
-                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                       required autocomplete="name" value="{{ $admin->name }}" autofocus id="name">
-                                @error('name')
+                                <input type="text" name="sponser_id"
+                                       class="form-control @error('sponser_id') is-invalid @enderror"
+                                       required autocomplete="sponser_id" value="{{ $admin->sponser_id }}" autofocus
+                                       id="sponser_id">
+                                @error('sponser_id')
+                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                @enderror
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="first_name" class="col-sm-3 control-label">First Name</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="first_name"
+                                       class="form-control @error('first_name') is-invalid @enderror"
+                                       required autocomplete="first_name" value="{{ $admin->first_name }}" autofocus
+                                       id="first_name">
+                                @error('first_name')
+                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                @enderror
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name" class="col-sm-3 control-label">Last Name</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="last_name"
+                                       class="form-control @error('last_name') is-invalid @enderror"
+                                       required autocomplete="last_name" value="{{ $admin->last_name }}" autofocus
+                                       id="last_name">
+                                @error('last_name')
+                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                @enderror
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-3 control-label">User Name</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="user_name"
+                                       class="form-control @error('user_name') is-invalid @enderror"
+                                       required autocomplete="user_name" value="{{ $admin->user_name }}" autofocus
+                                       id="user_name">
+                                @error('user_name')
                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                 @enderror
                                 <div class="clearfix"></div>
@@ -34,12 +75,27 @@
                         <div class="form-group">
                             <label for="email" class="col-sm-3 control-label">Email</label>
                             <div class="col-sm-4">
-                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                                <input type="email" name="email"
+                                       class="form-control @error('email') is-invalid @enderror"
                                        value="{{ $admin->email }}" required autocomplete="email" autofocus id="email">
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                                        <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone_number" class="col-sm-3 control-label">Phone Number</label>
+                            <div class="col-sm-4">
+                                <input type="phone_number" name="phone_number"
+                                       class="form-control @error('phone_number') is-invalid @enderror"
+                                       value="{{ $admin->phone_number }}" required autocomplete="phone_number" autofocus id="phone_number">
+                                @error('phone_number')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                                 <div class="clearfix"></div>
                             </div>
@@ -47,7 +103,8 @@
                         <div class="form-group">
                             <label for="password" class="col-sm-3 control-label">Password</label>
                             <div class="col-sm-4">
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                       name="password"
                                        placeholder="if you won't change password, leave it empty.."
                                        autocomplete="current-password" id="password">
                                 @error('password')
@@ -63,7 +120,8 @@
                             <div class="col-sm-offset-3 col-sm-4 text-center">
                                 <a href="{{ route('user.dashboard') }}" class="btn btn-info waves-effect waves-light
                                  m-t-10"><i class="fa fa-backward"></i> Back</a>
-                                <button type="submit" class="btn btn-success waves-effect waves-light m-t-10">Save</button>
+                                <button type="submit" class="btn btn-success waves-effect waves-light m-t-10">Save
+                                </button>
                             </div>
                         </div>
                     </form>

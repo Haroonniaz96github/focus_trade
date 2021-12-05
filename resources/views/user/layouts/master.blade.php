@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    @php $setting =\App\Setting::pluck('value','name')->toArray(); @endphp
+    @php $setting =\App\Models\Setting::pluck('value','name')->toArray(); @endphp
     @include('user.partials._head')
 </head>
 <body class="fix-header">

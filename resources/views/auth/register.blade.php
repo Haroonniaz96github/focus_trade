@@ -1,5 +1,11 @@
 @extends('layouts.master')
 @section('content')
+    <style>
+        .new-login-register {
+            position: absolute;
+            height: 100%;
+        }
+    </style>
     @php $setting =\App\Models\Setting::pluck('value','name')->toArray(); @endphp
     <section id="wrapper" class="new-login-register">
         <div class="lg-info-panel">
@@ -20,9 +26,36 @@
                     @csrf
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control @error('name') is-invalid @enderror" name="name" type="text"
-                                   placeholder="Name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                            @error('name')
+                            <input class="form-control @error('sponser_id') is-invalid @enderror" name="sponser_id" type="text"
+                                   placeholder="Enter Sponser ID" value="12345678" required autocomplete="sponser_id" autofocus>
+                            @error('sponser_id')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control @error('first_name') is-invalid @enderror" name="first_name" type="text"
+                                   placeholder="First Name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
+                            @error('first_name')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control @error('last_name') is-invalid @enderror" name="last_name" type="text"
+                                   placeholder="Last Name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
+                            @error('last_name')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control @error('user_name') is-invalid @enderror" name="user_name" type="text"
+                                   placeholder="Choose User Name" value="{{ old('user_name') }}" required autocomplete="user_name" autofocus>
+                            @error('user_name')
                             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
@@ -36,6 +69,15 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                             @enderror</div>
+                    </div>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" type="text"
+                                   placeholder="Phone Number" value="{{ old('phone_number') }}" required autocomplete="phone_number" autofocus>
+                            @error('phone_number')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">

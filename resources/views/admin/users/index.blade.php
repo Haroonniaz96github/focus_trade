@@ -131,7 +131,7 @@
             },
             "columns":[
                 {"data":"id","searchable":false,"orderable":false},
-                {"data":"name"},
+                {"data":"user_name"},
                 {"data":"email"},
                 {"data":"active"},
                 {"data":"created_at"},

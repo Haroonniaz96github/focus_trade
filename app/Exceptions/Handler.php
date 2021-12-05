@@ -35,11 +35,11 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->renderable(function (NotFoundHttpException $e, $request) {
-            return response()->view('exceptions.404', [], 404);
-        });
-        $this->renderable(function (\ErrorException $e, $request) {
-            return response()->view('exceptions.500', [], 500);
-        });
+//        $this->renderable(function (NotFoundHttpException $e, $request) {
+//            return response()->view('exceptions.404', [], 404);
+//        });
+//        $this->renderable(function (\ErrorException $e, $request) {
+//            return response()->view('exceptions.500', [], 500);
+//        });
     }
 }

@@ -54,6 +54,12 @@
                             <button class="btn btn-info btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light" type="submit">Log In</button>
                         </div>
                     </div>
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-12 text-center">
+                            <p>Don't have an account? <a href="{{ route('register') }}" class="text-danger
+                            m-l-5"><b>Sign Up</b></a></p>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

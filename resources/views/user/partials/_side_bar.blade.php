@@ -10,6 +10,18 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('deposit_fund') }}" class="waves-effect">
+                    <i class="fa fa-dollar fa-fw"></i>
+                    <span class="hide-menu">Deposit Fund</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('deposit_usdt') }}" class="waves-effect">
+                    <i class="fa fa-list fa-fw"></i>
+                    <span class="hide-menu">Deposit Usdt</span>
+                </a>
+            </li>
+            <li>
                 <a href="index.html" class="waves-effect">
                     <i class="ti-desktop fa-fw"></i>
                     <span class="hide-menu"> App <span class="fa arrow"></span></span>
